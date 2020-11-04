@@ -1,0 +1,85 @@
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-size: 62.5%;
+}
+
+.head__container {
+    width: 100vw;
+    height: 18vh;
+
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+
+    background-color: beige;
+
+    position: fixed;
+
+    z-index: 1;
+}
+
+.head__logo {
+    font-size: 3rem;
+    padding: .2em;
+}
+
+.head__nav {
+    transition: 1s ease;
+}
+
+.nav-link {
+    padding: .2em;
+
+    font-size: 1.6rem;
+    color: black;
+}
+
+/* GRID */
+
+.grid__container {
+    display: flex;
+    justify-content: center;
+
+    /* vet ej om relative eller absolute är bäst här. gör att grid flyter över headern. */
+    position: relative;
+    top: 18vh;
+}
+
+.grid {
+    /* padding: 0 15vw; */
+    /* max-width: 1000px; */
+
+    display: grid;
+}
+
+.grid__img {
+    width: 100%;
+    object-fit: contain;
+}
+
+@media screen and (min-width: 700px) {
+    
+    .grid__container {
+        z-index: 2;
+    }
+    
+    .grid {
+        padding: 0 15vw;
+        background-color: rgb(158, 102, 34);
+        grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+    }
+
+    /* ON SCROLL BIG SCREEN */
+
+    .move-nav {
+        display: flex;
+        flex-direction: column;
+        
+        position: absolute;
+        top: 5%;
+        right: 1%;
+    }
+}
