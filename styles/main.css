@@ -26,15 +26,12 @@
     padding: .2em;
 }
 
-.head__nav {
-    transition: 1s ease;
-}
-
 .nav-link {
     padding: .2em;
 
-    font-size: 1.6rem;
+    font-size: 2rem;
     color: black;
+    cursor: pointer;
 }
 
 /* GRID */
@@ -60,6 +57,9 @@
     object-fit: contain;
 }
 
+
+/* MEDIAQUERYS */
+
 @media screen and (min-width: 700px) {
     
     .grid__container {
@@ -67,19 +67,44 @@
     }
     
     .grid {
-        padding: 0 15vw;
-        background-color: rgb(158, 102, 34);
+        /* padding: 0 15vw; */
+        background-color: transparent;
         grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
     }
 
-    /* ON SCROLL BIG SCREEN */
-
+    /* ON SCROLL BIG SCREEN. kanske bättre att göra i javascript med if statement för skärm-bredd. */
     .move-nav {
         display: flex;
         flex-direction: column;
         
         position: absolute;
+        top: 10%;
+        right: 2%;
+
+        z-index: 10;
+    }
+
+    .move-logo {
+        position: absolute;
         top: 5%;
-        right: 1%;
+        left: 1%;
+        
+        opacity: 0;
+        transform: rotate(90deg);
+    }
+}
+
+/* for each link in javascript: animation: linkFade 1s 0.5s ease-in forwards; */
+
+/* KEYFRAMES */
+
+@keyframes linkFade {
+    0% { 
+        transform: translateX(20px);
+    }
+
+    100% {
+        opacity: 1;
+        transform: translateX(0px);
     }
 }
