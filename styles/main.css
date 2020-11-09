@@ -7,7 +7,7 @@
 
 .head__container {
     width: 100vw;
-    height: 18vh;
+    height: 160px;
 
     display: flex;
     flex-direction: column;
@@ -16,7 +16,7 @@
 
     background-color: beige;
 
-    /* position: fixed; */
+    position: fixed;
 
     z-index: 1;
 }
@@ -34,6 +34,16 @@
     cursor: pointer;
 }
 
+
+.nav-active {
+    height: 1px;
+    width: 0px;
+    background-color: black;
+    transform: translateY(-4px);
+    display: inline-block;
+}
+
+
 /* GRID */
 
 .grid__container {
@@ -45,61 +55,103 @@
 
     /* vet ej om relative eller absolute är bäst här. gör att grid flyter över headern. */
     position: relative;
-    top: 18vh;
+    top: 160px;
 }
 
 .grid {
     /* padding: 0 15vw; */
-    /* max-width: 1000px; */
+    
 
     display: grid;
+    grid-auto-flow: dense;
+    gap: 5px;
+
 }
 
 .grid__img {
     width: 100%;
     object-fit: contain;
+    
+    
 }
+
+.big-img {
+    grid-column-start: 1;
+    grid-column-end: -1;
+    grid-row-start: auto;
+    grid-row-end: auto;
+    
+}
+
+/* .grid__img:hover {
+    grid-column-start: 1;
+    grid-column-end: 1000;
+} */
+
+
+/* ON SCROLL BIG SCREEN. kanske bättre att göra i javascript med if statement för skärm-bredd. */
+.move-nav {
+    display: flex;
+    flex-direction: column;
+    
+    /* om det krånglar ändra tillbaks till absolute */
+    position: fixed;
+    top: 10px;
+    right: 10px;
+
+    z-index: 10;
+}
+
+
+/* den här behövs kanske inte? lagt in detta i animationen istället. */
+/* .move-logo { */
+    /* om det krånglar ändra tillbaks till absolute */
+    /* position: fixed;
+    top: 100px;
+    left: -50px; */
+    
+    /* opacity: 0; */
+    /* transform: rotate(-90deg); */
+/* } */
+
+
+
+
 
 
 /* MEDIAQUERYS */
 
 @media screen and (min-width: 700px) {
     
-    .grid__container {
-        z-index: 2;
-    }
-    
     .grid {
-        /* padding: 0 15vw; */
+        /* max-width: 1000px; */
+        
         background-color: transparent;
-        grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+        /* grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); */
+        grid-template-columns: repeat(3, 1fr);
+    }
+}
+
+@media screen and (min-width: 1000px) {
+
+    .head__container {
+        position: unset;
     }
 
-    /* ON SCROLL BIG SCREEN. kanske bättre att göra i javascript med if statement för skärm-bredd. */
-    .move-nav {
-        display: flex;
-        flex-direction: column;
-        
-        /* om det krånglar ändra tillbaks till absolute */
-        position: fixed;
-        top: 10px;
-        right: 10px;
+    .grid__container {
+        padding: 0 15vw;
+        z-index: 2;
 
-        z-index: 10;
-    }
-
-    .move-logo {
-        /* om det krånglar ändra tillbaks till absolute */
-        position: fixed;
-        top: 100px;
-        left: 10px;
-        
-        opacity: 0;
-        transform: rotate(-90deg);
+        top: 0;
     }
 }
 
 /* for each link in javascript: animation: linkFade 1s 0.5s ease-in forwards; */
+
+
+
+
+
 
 /* KEYFRAMES */
 
@@ -117,23 +169,47 @@
 
 @keyframes linkFadeOut {
     0% { 
-        opacity: 1;
-        transform: translateX(0px);
+        opacity: 0;
+        transform: translateX(20px);
     }
     
     100% {
-        opacity: 0;
-        transform: translateX(20px);
+        opacity: 1;
+        transform: translateX(0px);
     }
 }
 
 @keyframes logoFade {
     0% {
+        opacity: 0;
         transform: translateX(-20px) rotate(-90deg);
+        position: fixed;
+        top: 100px;
+        left: -50px;
     }
 
     100% {
         opacity: 1;
         transform: translateX(0px) rotate(-90deg);
+        position: fixed;
+        top: 100px;
+        left: -50px;
+    }
+}
+
+@keyframes picFade {
+    0% {
+        opacity: 1;
+    }
+
+    100% {
+        opacity: 0;
+        display: none;
+    }
+}
+
+@keyframes navActive {
+    0% {
+        width: 0;
     }
 }

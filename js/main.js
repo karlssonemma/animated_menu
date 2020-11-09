@@ -26,17 +26,17 @@ function moveNav() {
     let navLinks = document.querySelectorAll('.head__nav a');
     let logo = document.querySelector('.head__logo');
     
-    // TO ONLY BE RUN IF SCREEN-WIDTH IS MORE THAN 700px
-    if (window.screen.width > 700) {
+    // TO ONLY BE RUN IF SCREEN-WIDTH IS MORE THAN 1000px
+    if (window.screen.width > 1000 || window.screen.width === 1000) {
     
         if (window.scrollY > 1) {
             nav.classList.add('move-nav');
             logo.classList.add('move-logo');
-            logo.style.animation = 'logoFade 2s cubic-bezier(.11,.49,0,1.72) forwards .5s'
+            logo.style.animation = 'logoFade .5s cubic-bezier(.11,.49,0,1.72) forwards .5s'
     
             navLinks.forEach((link, index) => {
                 link.style.opacity = 0;
-                link.style.animation = `linkFade 1s cubic-bezier(.11,.49,0,1.72) ${index / 2 + 2}s 1 forwards`
+                link.style.animation = `linkFade 1s cubic-bezier(.11,.49,0,1.72) ${index / 4 + 1.5}s forwards`
             });
     
         } else if (window.scrollY < 1) {
@@ -55,3 +55,32 @@ function moveNav() {
 
 window.addEventListener('scroll', moveNav);
 
+
+let images = document.getElementsByClassName('grid__img');
+
+for (const img of images) {
+    img.addEventListener('click', (e) => {
+        // img.style.gridColumn = '1 / span 2';
+        img.classList.toggle('big-img');
+        console.log(e);
+
+        // img.style.animation = `picFade 1s forwards`
+
+    })
+}
+
+
+function navHover(e) {
+    let link = e.target.children;
+    link.style.width = 10 + 'px';
+};
+
+
+let links = document.getElementsByClassName('nav-link')
+for (const link of links) {
+    link.addEventListener('mouseover', navHover)
+}
+
+for (const link of links) {
+    
+}
