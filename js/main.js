@@ -22,32 +22,43 @@ console.log(grid.getBoundingClientRect());
 
 function moveNav() {
 
+    let navContainer = document.querySelector('.head__container');
     let nav = document.querySelector('.head__nav');
     let navLinks = document.querySelectorAll('.head__nav a');
     let logo = document.querySelector('.head__logo');
     
+
     // TO ONLY BE RUN IF SCREEN-WIDTH IS MORE THAN 1000px
     if (window.screen.width > 1000 || window.screen.width === 1000) {
     
         if (window.scrollY > 1) {
             nav.classList.add('move-nav');
-            logo.classList.add('move-logo');
-            logo.style.animation = 'logoFade .5s cubic-bezier(.11,.49,0,1.72) forwards .5s'
-    
+            // logo.classList.add('move-logo');
+            
+            logo.style.animation = 'logoMove 2s cubic-bezier(.11,.49,0,1.72) forwards .5s';
+
             navLinks.forEach((link, index) => {
                 link.style.opacity = 0;
-                link.style.animation = `linkFade 1s cubic-bezier(.11,.49,0,1.72) ${index / 4 + 1.5}s forwards`
+                link.style.animation = `linkFade 1s cubic-bezier(.11,.49,0,1.72) ${index / 4 + 1.5}s forwards`;
             });
+            
+     
     
         } else if (window.scrollY < 1) {
-            nav.classList.remove('move-nav');
-            logo.classList.remove('move-logo');
-            logo.style.animation = '';
+            // logo.classList.remove('move-logo');
+
+            logo.style.opacity = 1;
+            logo.style.animation = 'logoMoveBack 1s cubic-bezier(.11,.49,0,1.72) forwards';
     
             navLinks.forEach((link, index) => {
                 link.style.opacity = 1;
-                link.style.animation = '';
+                link.style.animation = `linkFadeOut 1s cubic-bezier(.11,.49,0,1.72) ${index / 4 }s forwards`;
+                // link.style.animation = `linkFade 1s cubic-bezier(.11,.49,0,1.72) ${index / 4 + 1.5}s reverse forwards`;
+
             });
+
+
+            
         };
 
     };
@@ -70,17 +81,31 @@ for (const img of images) {
 }
 
 
-function navHover(e) {
-    let link = e.target.children;
-    link.style.width = 10 + 'px';
+
+// LINK ON HOVER ANIMATION
+
+function linkHover(e) {
+
+    if (window.screen.width > 1000 || window.screen.width === 1000) {
+        let line = e.target.lastChild;
+
+        line.style.animation = 'navActive .2s ease forwards';
+    };
+};
+
+function linkHoverOut(e) {
+
+    if (window.screen.width > 1000 || window.screen.width === 1000) {
+        let line = e.target.lastChild;
+
+        line.style.animation = 'navNotActive .2s ease forwards';
+    };
 };
 
 
-let links = document.getElementsByClassName('nav-link')
-for (const link of links) {
-    link.addEventListener('mouseover', navHover)
-}
+let links = document.getElementsByClassName('nav-link');
 
 for (const link of links) {
-    
+    link.addEventListener('mouseover', linkHover);
+    link.addEventListener('mouseout', linkHoverOut);
 }
