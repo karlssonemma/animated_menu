@@ -21,6 +21,7 @@
     z-index: 1;
 }
 
+
 .head__logo {
     font-size: 3rem;
     padding: .2em;
@@ -34,6 +35,16 @@
     cursor: pointer;
 
     text-align: right;
+}
+
+.nav-link:nth-child(1) {
+    animation-delay: 1s;
+}
+.nav-link:nth-child(2) {
+    animation-delay: 1.25s;
+}
+.nav-link:nth-child(3) {
+    animation-delay: 1.5s;
 }
 
 .line {
@@ -88,11 +99,6 @@
     
 }
 
-/* .grid__img:hover {
-    grid-column-start: 1;
-    grid-column-end: 1000;
-} */
-
 
 /* ON SCROLL BIG SCREEN. kanske bättre att göra i javascript med if statement för skärm-bredd. */
 .move-nav {
@@ -121,6 +127,20 @@
 /* } */
 
 
+.nav-animation {
+    /* transform: translateX(-20px); */
+    opacity: 0;
+    transition: 1s;
+}
+
+
+.link-fade {
+    animation: linkFade 1s cubic-bezier(.11,.49,0,1.72) forwards;
+}
+
+.link-fade-out {
+    animation: linkFadeOut 1s cubic-bezier(.11,.49,0,1.72) reverse forwards;
+}
 
 
 
@@ -162,16 +182,7 @@
 
 /* KEYFRAMES */
 
-@keyframes navFade {
-    0% {
-        opacity: 1;
-    }
 
-    100% {
-        opacity: 0;
-        transform: translateY(-20px);
-    }
-}
 
 @keyframes linkFade {
     0% { 
@@ -187,45 +198,18 @@
 
 
 @keyframes linkFadeOut {
-    0% { 
+    0% {
+        opacity: 0;
+        transform: translateX(20px);
+    }
+    100% { 
         opacity: 1;
         transform: translateX(0px);
     }
     
-    100% {
-        opacity: 0;
-        transform: translateX(20px);
-    }
 }
 
-@keyframes logoFade {
-    0% {
-        opacity: 0;
-        transform: translateX(-20px) rotate(-90deg);
-        position: fixed;
-        top: 100px;
-        left: -50px;
-    }
 
-    100% {
-        opacity: 1;
-        transform: translateX(0px) rotate(-90deg);
-        position: fixed;
-        top: 100px;
-        left: -50px;
-    }
-}
-
-@keyframes picFade {
-    0% {
-        opacity: 1;
-    }
-
-    100% {
-        opacity: 0;
-        display: none;
-    }
-}
 
 
 @keyframes logoMove {

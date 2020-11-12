@@ -32,39 +32,88 @@ function moveNav() {
     if (window.screen.width > 1000 || window.screen.width === 1000) {
     
         if (window.scrollY > 1) {
-            nav.classList.add('move-nav');
-            // logo.classList.add('move-logo');
             
+            logo.classList.add('move-logo');
             logo.style.animation = 'logoMove 2s cubic-bezier(.11,.49,0,1.72) forwards .5s';
 
-            navLinks.forEach((link, index) => {
-                link.style.opacity = 0;
-                link.style.animation = `linkFade 1s cubic-bezier(.11,.49,0,1.72) ${index / 4 + 1.5}s forwards`;
+            
+
+
+            // --------------------------------------save
+            
+            navLinks.forEach( (link, index) => {
+                link.classList.add('nav-animation');
             });
+
+            setTimeout( () => {
+                nav.classList.add('move-nav');
+                console.log('hej');
+                
+            }, 1000);
+
+            navLinks.forEach((link, index) => {
+                link.classList.add('link-fade');
+                // link.style.animationDelay = `${index / 4 + 1.5}s`;
+            });
+
+            // --------------------------------------save
+
+            
+
+
+            
             
      
     
         } else if (window.scrollY < 1) {
-            // logo.classList.remove('move-logo');
+            logo.classList.remove('move-logo');
 
             logo.style.opacity = 1;
             logo.style.animation = 'logoMoveBack 1s cubic-bezier(.11,.49,0,1.72) forwards';
-    
-            navLinks.forEach((link, index) => {
-                link.style.opacity = 1;
-                link.style.animation = `linkFadeOut 1s cubic-bezier(.11,.49,0,1.72) ${index / 4 }s forwards`;
-                // link.style.animation = `linkFade 1s cubic-bezier(.11,.49,0,1.72) ${index / 4 + 1.5}s reverse forwards`;
 
+        
+            // --------------------------------------save
+            navLinks.forEach((link, index) => {
+                
+                
+                link.style.opacity = 1;
+               
+                link.style.animation = 'none';
+                link.style.animation = '';
+                link.classList.remove('link-fade');
+    
+        
+                
+                // link.style.animationDelay = `${2 - index }s`;
+                link.classList.add('link-fade-out');
+
+                let linkAnimation = document.querySelector('.link-fade-out');
+
+                // linkAnimation.addEventListener('animationend', () => {
+                //     nav.classList.remove('move-nav');
+                // });
+
+                
             });
 
-
             
+            // --------------------------------------save 
         };
 
     };
 };
 
 window.addEventListener('scroll', moveNav);
+
+
+
+
+
+
+
+
+
+
 
 
 let images = document.getElementsByClassName('grid__img');
