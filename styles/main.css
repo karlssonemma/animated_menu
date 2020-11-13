@@ -19,6 +19,7 @@
     position: fixed;
 
     z-index: 1;
+
 }
 
 
@@ -35,16 +36,18 @@
     cursor: pointer;
 
     text-align: right;
+
+    transition: 1s;
 }
 
 .nav-link:nth-child(1) {
-    animation-delay: 1s;
+    transition-delay: 1s;
 }
 .nav-link:nth-child(2) {
-    animation-delay: 1.25s;
+    transition-delay: 1.25s;
 }
 .nav-link:nth-child(3) {
-    animation-delay: 1.5s;
+    transition-delay: 1.5s;
 }
 
 .line {
@@ -99,6 +102,23 @@
     
 }
 
+/* ---------------------------------------------- */
+
+.header-up {
+    animation: navFade 1s;
+}
+
+.header-down {
+    animation: navFadeIn 1s;
+}
+
+
+.open {
+    transform: translateX(-100px);
+    transition: 1s;
+}
+/* ---------------------------------------------- */
+
 
 /* ON SCROLL BIG SCREEN. kanske bättre att göra i javascript med if statement för skärm-bredd. */
 .move-nav {
@@ -108,11 +128,14 @@
     /* om det krånglar ändra tillbaks till absolute */
     position: fixed;
     top: 10px;
-    right: 10px;
+    right: -100px;
 
     z-index: 10;
-
 }
+
+
+
+
 
 
 /* den här behövs kanske inte? lagt in detta i animationen istället. */
@@ -182,7 +205,21 @@
 
 /* KEYFRAMES */
 
+@keyframes navFade {
+    to {
+        transform: translateY(-80vh);
+    }
+}
 
+@keyframes navFadeIn {
+    from {
+        transform: translateY(-80vh);
+    }
+
+    to {
+        transform: translateY(0);
+    }
+}
 
 @keyframes linkFade {
     0% { 

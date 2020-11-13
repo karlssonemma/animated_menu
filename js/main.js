@@ -31,73 +31,103 @@ function moveNav() {
     // TO ONLY BE RUN IF SCREEN-WIDTH IS MORE THAN 1000px
     if (window.screen.width > 1000 || window.screen.width === 1000) {
     
-        if (window.scrollY > 1) {
+        if (window.scrollY > 0) {
             
-            logo.classList.add('move-logo');
-            logo.style.animation = 'logoMove 2s cubic-bezier(.11,.49,0,1.72) forwards .5s';
-
-            
+            // logo.classList.add('move-logo');
+            // logo.style.animation = 'logoMove 2s cubic-bezier(.11,.49,0,1.72) forwards .5s';
 
 
             // --------------------------------------save
             
-            navLinks.forEach( (link, index) => {
-                link.classList.add('nav-animation');
-            });
+            // navLinks.forEach( (link, index) => {
+            //     link.classList.add('nav-animation');
+            // });
 
-            setTimeout( () => {
-                nav.classList.add('move-nav');
-                console.log('hej');
+            // setTimeout( () => {
+            //     nav.classList.add('move-nav');
+            //     console.log('hej');
                 
-            }, 1000);
+            // }, 1000);
 
-            navLinks.forEach((link, index) => {
-                link.classList.add('link-fade');
-                // link.style.animationDelay = `${index / 4 + 1.5}s`;
-            });
+            // navLinks.forEach((link, index) => {
+            //     link.classList.add('link-fade');
+            //     // link.style.animationDelay = `${index / 4 + 1.5}s`;
+            // });
 
             // --------------------------------------save
-
             
+                navContainer.classList.add('header-up');
 
 
+                let headUp = document.querySelector('.header-up');
+                headUp.addEventListener('animationend', () => {
+                    nav.classList.add('move-nav');
+                    // navContainer.classList.remove('header-up');
+
+                    navLinks.forEach(link => {
+                        link.classList.add('open');
+                    })
+                })
             
             
      
     
         } else if (window.scrollY < 1) {
-            logo.classList.remove('move-logo');
+            // logo.classList.remove('move-logo');
 
-            logo.style.opacity = 1;
-            logo.style.animation = 'logoMoveBack 1s cubic-bezier(.11,.49,0,1.72) forwards';
+            // logo.style.opacity = 1;
+            // logo.style.animation = 'logoMoveBack 1s cubic-bezier(.11,.49,0,1.72) forwards';
 
         
+            navLinks.forEach(link => {
+                link.classList.remove('open');
+            })
+
+            let links = document.querySelectorAll('.nav-link');
+
+            links.forEach(link => {
+                link.addEventListener('transitionend', () => {
+                    nav.classList.remove('move-nav');
+                    navContainer.classList.add('header-down');
+                })
+            })
+
+            let headDown = document.querySelector('.header-down');
+            headDown.addEventListener('animationend', () => {
+                navContainer.classList.remove('header-down');
+            })
+
+
+
             // --------------------------------------save
-            navLinks.forEach((link, index) => {
+            // navLinks.forEach((link, index) => {
                 
                 
-                link.style.opacity = 1;
+            //     link.style.opacity = 1;
                
-                link.style.animation = 'none';
-                link.style.animation = '';
-                link.classList.remove('link-fade');
+            //     link.style.animation = 'none';
+            //     link.style.animation = '';
+            //     link.classList.remove('link-fade');
     
         
                 
                 // link.style.animationDelay = `${2 - index }s`;
-                link.classList.add('link-fade-out');
+                // link.classList.add('link-fade-out');
 
-                let linkAnimation = document.querySelector('.link-fade-out');
-
-                // linkAnimation.addEventListener('animationend', () => {
-                //     nav.classList.remove('move-nav');
-                // });
+                // let linkAnimation = document.querySelector('.link-fade-out');
 
                 
-            });
+            // });
 
             
             // --------------------------------------save 
+
+
+
+
+
+
+
         };
 
     };
