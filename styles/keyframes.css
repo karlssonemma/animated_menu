@@ -1,0 +1,102 @@
+/* ---------------------------------------------- */
+                /* KEYFRAMES */
+/* ---------------------------------------------- */
+
+
+@keyframes navFade {
+    from {
+        opacity: 1;
+        transform: translateY(0vh);
+    }
+    
+    to {
+        opacity: 0;
+        transform: translateY(-20px);
+    }
+}
+
+@keyframes navFadeIn {
+    from {
+        opacity: 0;
+        transform: translateY(-20px);
+    }
+
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+@keyframes linkFade {
+    0% { 
+        opacity: 0;
+        transform: translateX(0px);
+    }
+
+    100% {
+        opacity: 1;
+        transform: translateX(-100px);
+    }
+}
+
+
+@keyframes linkFadeOut {
+    0% {
+        opacity: 1;
+        transform: translateX(0px);
+    }
+    100% { 
+        opacity: 0;
+        transform: translateX(100px);
+    }
+}
+
+/* LOGO */
+
+@keyframes logoIn {
+    from {
+        opacity: 0;
+        transform: translateX(0px) rotate(-90deg);
+    }
+
+    to {
+        opacity: 1;
+        transform: translateX(50px) rotate(-90deg);
+    }
+}
+
+@keyframes logoOut {
+    from {
+        opacity: 1;
+        transform: translateX(0px) rotate(-90deg);
+    }
+
+    to {
+        opacity: 0;
+        transform: translateX(-50px) rotate(-90deg);
+    }
+}
+
+
+/* NAV ON HOVER */
+
+@keyframes navActive {
+    0% {
+        width: 0;
+    }
+
+    100% {
+        width: 15px;
+    }
+}
+
+@keyframes navNotActive {
+    0% {
+        width: 15px;
+    }
+
+    100% {
+        width: 0;
+    }
+}
+

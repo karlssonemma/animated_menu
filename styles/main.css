@@ -3,7 +3,12 @@
     padding: 0;
     box-sizing: border-box;
     font-size: 62.5%;
-    font-family: Impact, Haettenschweiler, 'Arial Narrow Bold', sans-serif;
+    font-family: 'Spartan', sans-serif;
+
+}
+
+body {
+    background-color: rgb(146, 135, 135);
 }
 
 .head__container {
@@ -15,9 +20,9 @@
     align-items: center;
     justify-content: center;
 
-    background-color: beige;
-
     position: fixed;
+
+    background-color: rgb(0, 0, 0);
 
     z-index: 1;
 
@@ -27,16 +32,20 @@
 .head__logo {
     font-size: 3rem;
     padding: .2em;
+    padding-bottom: .5em;
+    color: rgb(189, 189, 189);
 }
 
 .nav-link {
     padding: .2em;
 
-    font-size: 2rem;
-    color: black;
+    font-size: 1.8rem;
+    font-weight: 100;
+    color: rgb(189, 189, 189);
     cursor: pointer;
 
     text-align: right;
+    text-decoration: none;
 
     transition: 1s;
 }
@@ -53,6 +62,15 @@
 .out-v .nav-link:nth-child(3) {
     animation-delay: .2s;
 }
+.in-v .nav-link:nth-child(4),
+.out-v .nav-link:nth-child(4) {
+    animation-delay: .3s;
+}
+.in-v .nav-link:nth-child(5),
+.out-v .nav-link:nth-child(5) {
+    animation-delay: .4s;
+}
+
 
 .line {
     height: 1px;
@@ -82,42 +100,51 @@
 }
 
 .grid {
-    /* padding: 0 15vw; */
-    
-
     display: grid;
-    grid-auto-flow: dense;
-    gap: 5px;
-
 }
 
 .grid__img {
     width: 100%;
-    object-fit: contain;
-    
-    
+    min-height: 100%;
+    object-fit: cover;
+    transition: .5s;    
 }
 
-.big-img {
+.medium {
+    grid-column: 2 / span 2;
+}
+
+.big {
+    grid-column: 1 / span 2;
+    grid-row: 2 / span 2;
+}
+
+
+/* .big-img {
     grid-column-start: 1;
     grid-column-end: -1;
     grid-row-start: auto;
     grid-row-end: auto;
     
-}
+} */
 
 
-/* ----------------------------------------------WORKS!!!!!!!!!!!!!!!!!!!!!!! */
+/* ---------------------------------------------- */
+                /* ANIMATION-CLASSES */
+/* ---------------------------------------------- */
 
 .out-h {
     animation: navFade .3s forwards;
+}
+
+.in-h {
+    animation: navFadeIn .3s forwards;
 }
 
 .in-v {
     display: flex;
     flex-direction: column;
     
-    /* om det krånglar ändra tillbaks till absolute */
     position: fixed;
     top: 10px;
     right: -100px;
@@ -132,8 +159,7 @@
 .out-v {
     display: flex;
     flex-direction: column;
-    
-    /* om det krånglar ändra tillbaks till absolute */
+
     position: fixed;
     top: 10px;
     right: 0px;
@@ -145,10 +171,6 @@
     animation: linkFadeOut .5s forwards;
 }
 
-
-.in-h {
-    animation: navFadeIn .3s forwards;
-}
 
 .logo-in-v {
     opacity: 0;
@@ -169,44 +191,33 @@
     animation: logoOut .4s forwards .7s;
 }
 
+
+
 /* ---------------------------------------------- */
-
-
-
-
-
-
-/* ON SCROLL BIG SCREEN. kanske bättre att göra i javascript med if statement för skärm-bredd. */
-.move-nav {
-    display: flex;
-    flex-direction: column;
-    
-    /* om det krånglar ändra tillbaks till absolute */
-    position: fixed;
-    top: 10px;
-    right: -100px;
-
-    z-index: 10;
-}
-
-.open .nav-link {
-    transform: translateX(-100px);
-    transition: 1s;
-}
-
-
-
-
-/* MEDIAQUERYS */
+                /* MEDIA QUERYS */
+/* ---------------------------------------------- */
 
 @media screen and (min-width: 700px) {
     
     .grid {
-        /* max-width: 1000px; */
+        max-width: 1000px;
+        overflow-x: hidden;
         
         background-color: transparent;
         /* grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); */
         grid-template-columns: repeat(3, 1fr);
+        /* grid-template-rows: repeat(auto, 50px); */
+        grid-auto-flow: dense;
+        
+        
+    }
+
+    .grid__img:hover {
+
+        transition: .5s;
+
+        transform: scaleX(1.02);
+        overflow: hidden;
     }
 }
 
@@ -218,191 +229,13 @@
     }
 
     .grid__container {
-        padding: 0 15vw;
+        padding: 0 10vw;
         z-index: 2;
 
         top: 0;
     }
 }
 
-/* for each link in javascript: animation: linkFade 1s 0.5s ease-in forwards; */
 
-
-
-
-
-
-/* KEYFRAMES */
-
-@keyframes navFade {
-    from {
-        opacity: 1;
-        transform: translateY(0vh);
-    }
-    
-    to {
-        opacity: 0;
-        transform: translateY(-20px);
-    }
-}
-
-@keyframes navFadeIn {
-    from {
-        opacity: 0;
-        transform: translateY(-20px);
-    }
-
-    to {
-        opacity: 1;
-        transform: translateY(0);
-    }
-}
-
-@keyframes linkFade {
-    0% { 
-        opacity: 0;
-        transform: translateX(0px);
-    }
-
-    100% {
-        opacity: 1;
-        transform: translateX(-100px);
-    }
-}
-
-
-@keyframes linkFadeOut {
-    0% {
-        opacity: 1;
-        transform: translateX(0px);
-    }
-    100% { 
-        opacity: 0;
-        transform: translateX(100px);
-    }
-    
-}
-
-/* ----------------------- LOGO */
-
-@keyframes logoIn {
-    from {
-        opacity: 0;
-        transform: translateX(0px) rotate(-90deg);
-    }
-
-    to {
-        opacity: 1;
-        transform: translateX(50px) rotate(-90deg);
-    }
-}
-
-@keyframes logoOut {
-    from {
-        opacity: 1;
-        transform: translateX(0px) rotate(-90deg);
-    }
-
-    to {
-        opacity: 0;
-        transform: translateX(-50px) rotate(-90deg);
-    }
-}
-
-
-/* 
-@keyframes logoMove {
-    0% {
-        opacity: 1;
-    }
-
-    25% {
-        transform:  translateY(-20px);
-        opacity: 0;
-    }
-
-    50% {
-        transform:  translateY(-20px);
-        opacity: 0;
-        position: fixed;
-        top: 100px;
-        left: -50px;
-    }
-
-    75% {
-        transform: rotate(-90deg) translateY(-20px);
-        opacity: 0;
-        position: fixed;
-        top: 100px;
-        left: -50px;
-    }
-
-    100% {
-        transform: rotate(-90deg) translateY(0px);
-        opacity: 1;
-        position: fixed;
-        top: 100px;
-        left: -50px;
-    }
-} */
-
-/* 
-
-@keyframes logoMoveBack {
-    0% {
-        transform: rotate(-90deg) translateY(0px);
-        opacity: 1;
-        position: fixed;
-        top: 100px;
-        left: -50px;
-    }
-
-    50% {
-        transform: rotate(-90deg) translateY(-20px);
-        opacity: 0;
-        position: fixed;
-        top: 100px;
-        left: -50px;
-    }
-
-    75% {
-        opacity: 0;
-        transform: translateY(-20px);
-        
-    }
-
-    100% {
-        opacity: 1;
-        transform: translateX(0px);
-    }
-} */
-
-
-
-
-
-
-
-
-
-@keyframes navActive {
-    0% {
-        width: 0;
-    }
-
-    100% {
-        width: 15px;
-    }
-}
-
-@keyframes navNotActive {
-    0% {
-        width: 15px;
-    }
-
-    100% {
-        width: 0;
-    }
-}
 
 
