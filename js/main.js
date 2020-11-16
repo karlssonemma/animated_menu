@@ -35,7 +35,7 @@ function moveNav() {
     
         if (window.scrollY > 0 && isTrue == true) {
             
-            // logo.classList.add('move-logo');
+            
             // logo.style.animation = 'logoMove 2s cubic-bezier(.11,.49,0,1.72) forwards .5s';
 
 
@@ -78,11 +78,16 @@ function moveNav() {
 
 
             // --------------------------------------TRY3
+            
+
+
 
             if (nav.classList.contains('in-h')) {
                 nav.classList.replace('in-h', 'out-h');
+                logo.classList.replace('in-h', 'out-h');
             } else {
                 nav.classList.add('out-h');
+                logo.classList.add('out-h');
             }
 
 
@@ -90,6 +95,7 @@ function moveNav() {
 
             outH.addEventListener('animationend', () => {
                 nav.classList.replace('out-h', 'in-v');
+                logo.classList.replace('out-h', 'logo-in-v');
             });
 
 
@@ -118,10 +124,12 @@ function moveNav() {
             // --------------------------------------TRY3
 
             nav.classList.replace('in-v', 'out-v');
+            logo.classList.replace('logo-in-v', 'logo-out-v');
 
-            let outV = document.querySelector('.out-v');
+            let outV = document.querySelector('.logo-out-v');
             outV.addEventListener('animationend', () => {
                 nav.classList.replace('out-v', 'in-h');
+                logo.classList.replace('logo-out-v', 'in-h');
             });
 
             isTrue = !isTrue;
