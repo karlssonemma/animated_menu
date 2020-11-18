@@ -1,6 +1,7 @@
 
 let body = document.querySelector('body');
 let grid = document.querySelector('.grid__container');
+let nav = document.querySelector('.head__nav');
 
 console.log(grid.getBoundingClientRect());
 
@@ -85,29 +86,44 @@ for (const img of images) {
 
 // LINK ON HOVER ANIMATION
 
-function linkHover(e) {
+// function linkHover(e) {
 
-    if (window.screen.width > 1000 || window.screen.width === 1000) {
-        let line = e.target.lastChild;
+//     if (nav.classList.contains('in-v')) {
+//         let line = e.target.lastChild;
 
-        line.style.animation = 'navActive .2s ease forwards';
-    };
-};
+//         line.style.animation = 'navActive .2s ease forwards';
+//     };
+// };
 
-function linkHoverOut(e) {
+// function linkHoverOut(e) {
 
-    if (window.screen.width > 1000 || window.screen.width === 1000) {
-        let line = e.target.lastChild;
+//     if (nav.classList.contains('in-v')) {
+//         let line = e.target.lastChild;
 
-        line.style.animation = 'navNotActive .2s ease forwards';
-    };
-};
-
+//         line.style.animation = 'navNotActive .2s ease forwards';
+//     };
+// };
 
 
 let links = document.getElementsByClassName('nav-link');
 
-    for (const link of links) {
-        link.addEventListener('mouseover', linkHover);
-        link.addEventListener('mouseout', linkHoverOut);
-    }
+
+for (const link of links) {
+    link.addEventListener('mouseover', (e) => {
+        if (nav.classList.contains('in-v')) {
+            link.classList.toggle('active-v');
+        } else {
+            // link.style.textDecoration = 'underline';
+            // link.classList.toggle('active-h')
+        };
+    });
+
+    link.addEventListener('mouseout', (e) => {
+        if (nav.classList.contains('in-v')) {
+            link.classList.toggle('active-v');
+        } else {
+            // link.style.textDecoration = 'none';
+            // link.classList.toggle('active-h')
+        };
+    });
+};
