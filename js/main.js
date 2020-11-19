@@ -1,25 +1,17 @@
-
-let body = document.querySelector('body');
 let grid = document.querySelector('.grid__container');
 let nav = document.querySelector('.head__nav');
-
-console.log(grid.getBoundingClientRect());
-
-
+let logo = document.querySelector('.head__logo');
+let links = document.getElementsByClassName('nav-link');
 
 let isTrue = true;
 
-
+// ANIMATIONS FOR NAVBAR.
 function moveNav() {
-
-    let nav = document.querySelector('.head__nav');
-    let logo = document.querySelector('.head__logo');
     
     // TO ONLY BE RUN IF SCREEN-WIDTH IS MORE THAN 1000px
-    if (window.screen.width > 1000 || window.screen.width === 1000) {
+    if (window.innerWidth >= 1000) {
     
         if (window.scrollY > 0 && isTrue) {
-        
 
             if (nav.classList.contains('in-h')) {
                 nav.classList.replace('in-h', 'out-h');
@@ -29,7 +21,6 @@ function moveNav() {
                 logo.classList.add('out-h');
             }
 
-
             let outH = document.querySelector('.out-h');
 
             outH.addEventListener('animationend', () => {
@@ -38,7 +29,6 @@ function moveNav() {
             });
 
             isTrue = !isTrue;
-     
     
         } else if (window.scrollY < 1 && !isTrue) {
 
@@ -59,71 +49,17 @@ function moveNav() {
 window.addEventListener('scroll', moveNav);
 
 
-
-
-
-
-
-
-
-
-
-
-let images = document.getElementsByClassName('grid__img');
-
-for (const img of images) {
-    img.addEventListener('click', (e) => {
-        // img.style.gridColumn = '1 / span 2';
-        img.classList.toggle('big-img');
-        console.log(e);
-
-        // img.style.animation = `picFade 1s forwards`
-
-    })
-}
-
-
-
-// LINK ON HOVER ANIMATION
-
-// function linkHover(e) {
-
-//     if (nav.classList.contains('in-v')) {
-//         let line = e.target.lastChild;
-
-//         line.style.animation = 'navActive .2s ease forwards';
-//     };
-// };
-
-// function linkHoverOut(e) {
-
-//     if (nav.classList.contains('in-v')) {
-//         let line = e.target.lastChild;
-
-//         line.style.animation = 'navNotActive .2s ease forwards';
-//     };
-// };
-
-
-let links = document.getElementsByClassName('nav-link');
-
-
+// ON HOVER WHEN MENU IS TO THE RIGHT.
 for (const link of links) {
     link.addEventListener('mouseover', (e) => {
         if (nav.classList.contains('in-v')) {
             link.classList.toggle('active-v');
-        } else {
-            // link.style.textDecoration = 'underline';
-            // link.classList.toggle('active-h')
-        };
+        }
     });
 
     link.addEventListener('mouseout', (e) => {
         if (nav.classList.contains('in-v')) {
             link.classList.toggle('active-v');
-        } else {
-            // link.style.textDecoration = 'none';
-            // link.classList.toggle('active-h')
-        };
+        }
     });
 };

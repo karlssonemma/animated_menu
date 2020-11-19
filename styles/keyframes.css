@@ -1,9 +1,4 @@
-/* ---------------------------------------------- */
-                /* KEYFRAMES */
-/* ---------------------------------------------- */
-
-
-@keyframes navFade {
+@keyframes navFadeOut {
     from {
         opacity: 1;
         transform: translateY(0vh);
@@ -27,7 +22,7 @@
     }
 }
 
-@keyframes linkFade {
+@keyframes linkFadeIn {
     0% { 
         opacity: 0;
         transform: translateX(0px);
@@ -61,7 +56,7 @@
 
     to {
         opacity: 1;
-        transform: translateX(50px) rotate(-90deg);
+        transform: translateX(45px) rotate(-90deg);
     }
 }
 
@@ -73,30 +68,6 @@
 
     to {
         opacity: 0;
-        transform: translateX(-50px) rotate(-90deg);
+        transform: translateX(-45px) rotate(-90deg);
     }
 }
-
-
-/* NAV ON HOVER */
-/* 
-@keyframes navActive {
-    0% {
-        width: 0;
-    }
-
-    100% {
-        width: 15px;
-    }
-}
-
-@keyframes navNotActive {
-    0% {
-        width: 15px;
-    }
-
-    100% {
-        width: 0;
-    }
-} */
-

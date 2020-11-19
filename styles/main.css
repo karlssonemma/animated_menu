@@ -3,7 +3,6 @@
     padding: 0;
     box-sizing: border-box;
     font-size: 62.5%;
-    /* font-family: 'Spartan', sans-serif; */
     font-family: 'Barlow Condensed', sans-serif;
 
 }
@@ -15,7 +14,7 @@ body,
 
 .head__container {
     width: 100vw;
-    height: 160px;
+    height: 140px;
 
     display: flex;
     flex-direction: column;
@@ -25,7 +24,6 @@ body,
     position: fixed;
 
     z-index: 1;
-
 }
 
 .head__logo,
@@ -35,7 +33,7 @@ body,
 }
 
 .head__logo {
-    font-size: 4rem;
+    font-size: 3rem;
     font-weight: 400;
     padding: .2em;
     padding-bottom: .5em;
@@ -49,7 +47,7 @@ body,
 .nav-link {
     padding: .3em;
 
-    font-size: 2.2rem;
+    font-size: 2rem;
     font-weight: 100;
     cursor: pointer;
 
@@ -65,6 +63,8 @@ body,
 
 
 /* ta bort detta om linkarna krånglar samt sätt .head__nav till display block. och  */
+
+/* ON HOVER WHEN NAV IS ON TOP. */
 .nav-link::after {
     content: '';
     display: block;
@@ -75,38 +75,11 @@ body,
     transition: .2s;
 }
 
-.nav-link:hover::after {
+.nav-link:hover::after,
+.nav-link:focus::after {
     width: 100%;
     transition: .2s;
 }
-
-/* .nav-link:hover {
-    text-decoration: underline;
-} */
-
-
-
-.in-v .nav-link:nth-child(1),
-.out-v .nav-link:nth-child(1) {
-    animation-delay: 0s;
-}
-.in-v .nav-link:nth-child(2),
-.out-v .nav-link:nth-child(2) {
-    animation-delay: .1s;
-}
-.in-v .nav-link:nth-child(3),
-.out-v .nav-link:nth-child(3) {
-    animation-delay: .2s;
-}
-.in-v .nav-link:nth-child(4),
-.out-v .nav-link:nth-child(4) {
-    animation-delay: .3s;
-}
-.in-v .nav-link:nth-child(5),
-.out-v .nav-link:nth-child(5) {
-    animation-delay: .4s;
-}
-
 
 .line {
     height: 1px;
@@ -126,66 +99,43 @@ body,
     transition: .2s;
 }
 
-/* .active-h {
-    border-bottom: 1px solid white;
-    transition: .5s;
-} */
-
-
-
 
 /* GRID */
-
 .grid__container {
-    
     margin: 0 auto;
 
     display: flex;
     justify-content: center;
 
-    /* vet ej om relative eller absolute är bäst här. gör att grid flyter över headern. */
     position: relative;
-    top: 160px;
+    top: 140px;
 }
 
 .grid {
     display: grid;
+    gap: 10px;
+    grid-auto-flow: dense;
+
+    background-color: transparent;
 }
 
 .grid__img {
     width: 100%;
     min-height: 100%;
+
     object-fit: cover;
-    transition: .5s;    
+    transition: .5s;
 }
-
-.medium {
-    grid-column: 2 / span 2;
-}
-
-.big {
-    grid-column: 1 / span 2;
-    grid-row: 2 / span 2;
-}
-
-
-/* .big-img {
-    grid-column-start: 1;
-    grid-column-end: -1;
-    grid-row-start: auto;
-    grid-row-end: auto;
-    
-} */
 
 
 /* ---------------------------------------------- */
                 /* ANIMATION-CLASSES */
 /* ---------------------------------------------- */
 
-/* out-v och in-v för nav-link har display block för att lägga dem i högra-margen och för att fixa så span hämnar efter och inte mitt på länken. samt nav-link::after för in-v och out-v har display none för att ej visa underlinen då länkarna liger på högersidan. */
+/* .out/in-v .nav-link has display:block to make them aligned to the right side and not centered which they are otherwise. if this isnt done, the span element .line will lie on top of the text instead of after. .nav-link::after for in/out-v has display:none to not show the after element when nav is on the right side. */
 
 .out-h {
-    animation: navFade .3s forwards;
+    animation: navFadeOut .3s forwards;
 }
 
 .in-h {
@@ -205,7 +155,7 @@ body,
 
 .in-v .nav-link {
     display: block;
-    animation: linkFade .5s forwards;
+    animation: linkFadeIn .5s forwards;
 }
 
 .in-v .nav-link::after {
@@ -232,11 +182,32 @@ body,
     display: none;
 }
 
+/* ANIMATION-DELAYS FOR LINKS. */
+.in-v .nav-link:nth-child(1),
+.out-v .nav-link:nth-child(1) {
+    animation-delay: 0s;
+}
+.in-v .nav-link:nth-child(2),
+.out-v .nav-link:nth-child(2) {
+    animation-delay: .1s;
+}
+.in-v .nav-link:nth-child(3),
+.out-v .nav-link:nth-child(3) {
+    animation-delay: .2s;
+}
+.in-v .nav-link:nth-child(4),
+.out-v .nav-link:nth-child(4) {
+    animation-delay: .3s;
+}
+.in-v .nav-link:nth-child(5),
+.out-v .nav-link:nth-child(5) {
+    animation-delay: .4s;
+}
 
 .logo-in-v {
     opacity: 0;
     position: fixed;
-    top: 100px;
+    top: 80px;
     left: -100px;
     transform: rotate(-90deg);
 
@@ -245,8 +216,8 @@ body,
 
 .logo-out-v {
     position: fixed;
-    top: 100px;
-    left: -50px;
+    top: 80px;
+    left: -55px;
     transform: rotate(-90deg);
 
     animation: logoOut .4s forwards .7s;
@@ -260,30 +231,42 @@ body,
 
 @media screen and (min-width: 700px) {
     
+    .head__container {
+        height: 160px;
+    }
+
+    .head__logo {
+        font-size: 4rem;
+    }
+
+    .nav-link {
+        font-size: 2.2rem;
+    }
+
+    .grid__container {
+        top: 160px;
+    }
+
     .grid {
-        max-width: 1000px;
-        overflow-x: hidden;
-        
-        background-color: transparent;
-        /* grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); */
         grid-template-columns: repeat(3, 1fr);
-        /* grid-template-rows: repeat(auto, 50px); */
-        grid-auto-flow: dense;
-        
-        
     }
 
     .grid__img:hover {
-
-        transition: .5s;
-
         transform: scale(1.02);
-        overflow: hidden;
+        transition: .5s;
+    }
+
+    .medium {
+        grid-column: 2 / span 2;
+    }
+
+    .big {
+        grid-column: 1 / span 2;
+        grid-row: 2 / span 2;
     }
 }
 
 @media screen and (min-width: 1000px) {
-
 
     .head__container {
         position: unset;
@@ -296,7 +279,3 @@ body,
         top: 0;
     }
 }
-
-
-
-
