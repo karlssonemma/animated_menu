@@ -199,10 +199,7 @@ body,
 .out-v .nav-link:nth-child(4) {
     animation-delay: .3s;
 }
-.in-v .nav-link:nth-child(5),
-.out-v .nav-link:nth-child(5) {
-    animation-delay: .4s;
-}
+
 
 .logo-in-v {
     opacity: 0;
@@ -256,7 +253,7 @@ body,
         transition: .5s;
     }
 
-    .medium {
+    .med {
         grid-column: 2 / span 2;
     }
 
